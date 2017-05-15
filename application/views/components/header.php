@@ -48,10 +48,17 @@
         <?php } ?>
       </ul>
       <ul class="side-nav" id="mobile-demo">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
+        <li><a href="<?= base_url() ?>">Home</a></li>
+        <?php if($user) { ?>
+        <?php if($user->admin === '1') { ?>
+        <li><a href="<?= base_url() ?>index.php/user">Users list</a></li>
+        <?php } ?>
+        <li><a href="<?= base_url() ?>index.php/user/my_page/<?= $user->token ?>" >My page</a></li>
+        <li><a href="<?= base_url() ?>index.php/user/logout">Logout</a></li>
+        <?php } else { ?>
+        <li><a href="<?= base_url() ?>index.php/user/signin">Sign in</a></li>
+        <li><a href="<?= base_url() ?>index.php/user/signup">Sign up</a></li>
+        <?php } ?>
       </ul>
     </div>
   </nav>
