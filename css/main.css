@@ -1,0 +1,42 @@
+/*Main settings*/
+html, body {
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Nav settings*/
+#main-nav {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Main content */
+#app{
+    margin-top: 40px;
+}
+
+/* Signup form */
+#signup-form{
+    padding-bottom: 10px;
+}
+
+
+/* Sucess message */
+.text-align{
+    text-align: center;
+}
+
+/* Big link */
+.big-link {
+    display: block;
+}
+
+
+.big-link:hover {
+    background: #4caf50;
+    color: white !important;
+}
+
+/* Label */
+label{
+    color: black !important;
+}
