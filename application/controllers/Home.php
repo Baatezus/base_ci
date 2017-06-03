@@ -7,7 +7,6 @@ class Home extends MY_Controller {
 	{
 		$this->load->view('components/header');
 		$this->load->view('home');
-		$this->load->view('components/footer');
                 $this->load->view('components/endpage');
 	}
 }

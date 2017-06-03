@@ -1,4 +1,4 @@
-<div class="">
+<div class="" id="forgot-app">
 <?= $message ?>
 <?= validation_errors() ?>
 <?php if(!$request_sent) { ?>
@@ -11,7 +11,7 @@
         </div>
     </div>  
 
-    <button type="submit" v-bind:disabled="recoveryIsDisabled" class="waves-effect waves-light btn">
+    <button type="submit" v-bind:disabled="isDisabled" class="waves-effect waves-light btn">
         Send me a email to change my password
     </button>
 </form>

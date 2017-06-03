@@ -20,7 +20,6 @@ class User extends MY_Controller {
         
         $this->load->view('components/header');
         $this->load->view('admin/user_list', $data);
-        $this->load->view('components/footer');
         $this->load->view('components/endpage');
     }
 
@@ -34,15 +33,14 @@ class User extends MY_Controller {
         if ($this->form_validation->run() !== FALSE)
         {
             $user['email'] = $this->input->post('email');
-            $user['password'] = sha1($this->input->post('password'));
+            $user['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
             $user['token'] = md5(uniqid());
             
             $user_id = $this->user_model->add($user);
             $url = base_url() .
                     "index.php/user/confirm_registration/".
                     "$user_id/" . $user['token'];
-            $mailer = new Mailer();
-            @$mailer->welcome($user['email'], $url);
+            $this->welcomeMail($user['email'], $url);
             
             $data['signup'] = TRUE; 
             $data['email'] = $user['email'];
@@ -100,8 +98,8 @@ class User extends MY_Controller {
                 $data['message'] = "Your registration is not complete,"
                         . " please visit the link we sent you "
                         . "to confirm your registration";
-                $mailer = new Mailer();
-                @$mailer->welcome($user->email, $url);                
+                
+                $this->welcomeMail($user->email, $url);                
             }
         }
         
@@ -135,8 +133,7 @@ class User extends MY_Controller {
                         $tokenData['user_id'] . '/' .
                         $tokenData['token'];
 
-                $mailer = new Mailer();
-                $mailer->sendNewPwdRequest($user->email, $url);
+                $this->recoverPwdMail($user->email, $url);
                 $data['request_sent'] = TRUE;
                 $data['email'] = $this->input->post('email');
                 $data['url'] = $url;
@@ -172,7 +169,7 @@ class User extends MY_Controller {
         $this->form_validation->set_rules('passconf', 'Password Confirmation', 'callback_passconf_check');
 
         if ($this->form_validation->run() !== FALSE) {                     
-            $this->user_model->updatePwd($user_id, $this->input->post('password'));
+            $this->user_model->updatePwd($user_id, password_hash($this->input->post('password'), PASSWORD_DEFAULT));
 
             redirect('user/password_updated');
         } 
@@ -241,4 +238,12 @@ class User extends MY_Controller {
 
         return TRUE;
     } 
+    
+    public function welcomeMail() {
+        // send a welcome email with activation link
+    }
+    
+    public function recoverPwdMail($email, $url) {
+        // Send revovery passowrd email
+    }
 }

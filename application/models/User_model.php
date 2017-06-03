@@ -41,14 +41,19 @@ class User_model extends CI_Model {
     
     public function getUser($data) {
         $this->db->where('email', $data['email']);
-        $this->db->where('password', sha1($data['password']));
         $q = $this->db->get('users');
         
         $result = $q->result();
         if(count($result) < 1) {
             return FALSE;
         } else { 
-            return $result[0];
+            $user = $result[0];
+            
+            if(password_verify($data['password'], $user->password)) {
+                return $user;
+            } else {
+                return FALSE;
+            } 
         }
     }
     
@@ -81,7 +86,7 @@ class User_model extends CI_Model {
     }    
     
     public function updatePwd($id, $pwd) {
-        $this->db->set('password', sha1($pwd));
+        $this->db->set('password', $pwd);
         $this->db->where('id', $id);
         $this->db->update('users');    
     }

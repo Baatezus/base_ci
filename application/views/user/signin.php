@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="signin-app">
     <?php if(strlen(validation_errors()) > 0) {?>
     <div class="card-panel orange">
         <?= validation_errors() ?>
@@ -21,7 +21,7 @@
             <label for="password">Enter your password</label>
         </div>      
     </div>
-        <button type="submit" v-bind:disabled="signinIsDisabled" class="waves-effect waves-light btn">Envoyer</button>
+        <button type="submit" v-bind:disabled="isDisabled" class="waves-effect waves-light btn">Envoyer</button>
     </form>
     <a href="<?= base_url() ?>index.php/user/forgot" class="waves-effect waves-light btn">
         I forgot my password...

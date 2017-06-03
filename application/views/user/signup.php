@@ -1,4 +1,5 @@
-<div class="row">
+<h1>Sign up</h1>
+<div class="row" id="signup-app">
     <?php if(!$signup) {?> 
     <?php if(strlen(validation_errors()) > 0) { ?> 
     <div class="card-panel orange">
@@ -36,7 +37,7 @@
             <p v-else class="orange-text">Password does not match confirmation<i class="material-icons left">clear</i></p>
         </div>        
     </div>
-        <button type="submit" v-bind:disabled="signupIsDisabled" class="waves-effect waves-light btn">Envoyer</button>
+        <button type="submit" v-bind:disabled="isDisabled" class="waves-effect waves-light btn">Envoyer</button>
     </form>
     <?php } else { ?>
     <h3 class="green-text text-align">
@@ -45,5 +46,4 @@
     <p>An email has been sent at <?= $email ?>, please visit the confirmation link
     to validate your registration</p>
     <?php } ?>
-</div>
-</div>    
+</div>  

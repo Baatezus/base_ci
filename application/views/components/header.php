@@ -32,7 +32,7 @@
 <body>
   <nav id="main-nav">
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Logo</a>
+      <a href="#!" class="brand-logo">ONESITE.COM</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="<?= base_url() ?>">Home</a></li>
@@ -65,4 +65,4 @@
 <?php if(count($this->session->flashdata())> 0) { ?>
     <div class="card-panel text-align flash-message green white-text"><?= $this->session->flashdata('message') ?></div>
 <?php } ?>
-<div class="container" id="app">
+<div class="container">

@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="form-container" id="new-pwd-app">
 <?= validation_errors() ?>
 <?= form_open('user/new_password', 'class="form-group"') ?>
 
@@ -24,7 +24,7 @@
     </div>
     <input hidden name="token" value="<?= $token ?>" />
     <input hidden name="user_id" value="<?= $user_id ?>" />
-    <button type="submit" v-bind:disabled="newPwdIsDisabled" class="waves-effect waves-light btn">Envoyer</button>
+    <button type="submit" v-bind:disabled="isDisabled" class="waves-effect waves-light btn">Envoyer</button>
 </form>
 </div>
 </div>
